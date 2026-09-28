@@ -1,0 +1,10 @@
+{
+  "dataset": "mosi",
+  "feature_path": "data/cmu-mosi/aligned_50.pkl",
+  "benchmark_name": "CMU-MOSI",
+  "sentiment_mode": "nonnegative",
+  "seed": 11,
+  "epochs": 25,
+  "batch_size": 64,
+  "learning_rate": 0.002
+}

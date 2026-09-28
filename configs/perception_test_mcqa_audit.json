@@ -1,0 +1,53 @@
+{
+  "archives": {
+    "train": {
+      "generation": "1686575054862298",
+      "member": "mc_question_train.json",
+      "metadata_split": "train",
+      "sha256": "e28bfb68f2b5de827bb76053f9415261e057b29f33cf18174f234535e4dcf073",
+      "size_bytes": 87873,
+      "url": "https://storage.googleapis.com/dm-perception-test/zip_data/mc_question_train_annotations.zip?generation=1686575054862298"
+    },
+    "validation": {
+      "generation": "1686575054970958",
+      "member": "mc_question_valid.json",
+      "metadata_split": "valid",
+      "sha256": "3f3ebb388b042e35d5c07fa6e2404d78feb63e4e477740948fc92dfc83c480ad",
+      "size_bytes": 204076,
+      "url": "https://storage.googleapis.com/dm-perception-test/zip_data/mc_question_valid_annotations.zip?generation=1686575054970958"
+    }
+  },
+  "audit": "perception_test_mcqa_candidate_pool",
+  "eligibility": {
+    "min_supported_answers_per_group": 2,
+    "min_unique_videos_per_supported_answer_per_split": 5,
+    "report_all_three_option_tier": true,
+    "require_same_supported_answer_vocabulary_across_splits": true
+  },
+  "expected_snapshot_counts": {
+    "cross_split_all_three_option_group_count": 30,
+    "cross_split_minimum_two_answer_group_count": 59,
+    "duplicate_option_exclusion_count": {
+      "train": 0,
+      "validation": 4
+    },
+    "split_minimum_two_answer_group_count": {
+      "train": 252,
+      "validation": 382
+    }
+  },
+  "normalization": {
+    "case_sensitive": true,
+    "punctuation_sensitive": true,
+    "unicode": "NFC",
+    "whitespace": "strip_and_collapse"
+  },
+  "purpose": "candidate_pool_feasibility_only",
+  "schema_version": 2,
+  "source_repository": {
+    "annotation_license": "CC-BY-4.0",
+    "commit": "3938d2f1ba3a6b502025741cea4cd73c7b3bdfaf",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/legalcode",
+    "url": "https://github.com/google-deepmind/perception_test"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "schema": "conflictbench.temporal_campaign.v2",
+  "name": "temporal_factorial",
+  "base_config": {
+    "dataset": "synthetic_temporal",
+    "train_size": 6000,
+    "eval_size": 4000,
+    "train_mechanisms": ["clean", "invert", "swap", "dropout"],
+    "seen_mechanisms": ["clean", "invert", "swap", "dropout"],
+    "unseen_mechanisms": ["clean", "mixed", "burst", "ambiguity", "segment_invert", "occlusion", "drift"],
+    "seq_len": 64,
+    "strength": 1.0,
+    "positive_rate": 0.5,
+    "noise": 0.22,
+    "epochs": 25,
+    "batch_size": 256,
+    "learning_rate": 0.0015,
+    "query_cost": 0.10,
+    "abstain_cost": 0.20,
+    "torch_threads": 4,
+    "temporal_max_steps": 800,
+    "temporal_batch_size": 256,
+    "temporal_learning_rate": 0.0015,
+    "temporal_width": 96,
+    "temporal_depth": 4,
+    "temporal_eval_batch_size": 1024
+  },
+  "cells": [
+    {"id": "len32-noise012", "hypothesis": "Short traces retain enough event structure at low noise.", "overrides": {"seq_len": 32, "noise": 0.12}},
+    {"id": "len32-noise022", "hypothesis": "Short traces expose a moderate-noise sequence-vs-scalar gap.", "overrides": {"seq_len": 32, "noise": 0.22}},
+    {"id": "len32-noise040", "hypothesis": "Short traces are most sensitive to high observation noise.", "overrides": {"seq_len": 32, "noise": 0.40}},
+    {"id": "len64-noise012", "hypothesis": "The reference trace length improves temporal conflict separation at low noise.", "overrides": {"seq_len": 64, "noise": 0.12}},
+    {"id": "len64-noise022", "hypothesis": "The reference trace length gives the central temporal protocol condition.", "overrides": {"seq_len": 64, "noise": 0.22}},
+    {"id": "len64-noise040", "hypothesis": "Reference-length traces reveal whether temporal gains survive high noise.", "overrides": {"seq_len": 64, "noise": 0.40}},
+    {"id": "len128-noise012", "hypothesis": "Long traces provide redundant temporal evidence at low noise.", "overrides": {"seq_len": 128, "noise": 0.12}},
+    {"id": "len128-noise022", "hypothesis": "Long traces test whether additional temporal context improves transfer.", "overrides": {"seq_len": 128, "noise": 0.22}},
+    {"id": "len128-noise040", "hypothesis": "Long traces test whether temporal redundancy offsets high observation noise.", "overrides": {"seq_len": 128, "noise": 0.40}}
+  ],
+  "primary_seeds": [11, 23, 37, 41, 53, 67, 71, 89, 97, 101, 113, 127, 131, 149, 157, 173, 181, 191, 199],
+  "replication_seeds": [701, 709, 719, 727]
+}

@@ -1,0 +1,71 @@
+{
+  "feature_set": {
+    "forbidden_inputs": [
+      "question",
+      "options",
+      "answer",
+      "semantic_embedding",
+      "source_answer_score",
+      "source_sufficiency_outcome"
+    ],
+    "name": "container_and_stream_diagnostics_v1",
+    "names": [
+      "duration_relative_difference",
+      "byte_rate_relative_difference",
+      "target_av_duration_gap_fraction",
+      "donor_av_duration_gap_fraction",
+      "target_video_donor_audio_gap_fraction",
+      "target_audio_donor_video_gap_fraction",
+      "width_relative_difference",
+      "height_relative_difference",
+      "frame_rate_relative_difference",
+      "sample_rate_relative_difference",
+      "channel_count_relative_difference",
+      "video_codec_mismatch",
+      "audio_codec_mismatch",
+      "pixel_format_mismatch",
+      "sample_format_mismatch"
+    ]
+  },
+  "gate": {
+    "maximum_point_lift_over_structural_chance": 0.1,
+    "maximum_primary_upper_confidence_bound": 0.75,
+    "maximum_structural_chance_balanced_accuracy": 0.6,
+    "maximum_unseen_question_upper_confidence_bound": 0.8,
+    "minimum_permutation_p_value_exclusive": 0.05
+  },
+  "model": {
+    "families": [
+      "ridge_linear",
+      "univariate_linear",
+      "pairwise_interaction"
+    ],
+    "ridge_l2": 1.0,
+    "selection": "fit_only_max_absolute_covariance"
+  },
+  "permutation": {
+    "method": "within_component_role_swap_with_refit",
+    "repetitions": 10000,
+    "seed": 20271019
+  },
+  "protocol": {
+    "evaluation_partition": "pilot_gate",
+    "fit_partition": "scorer_fit",
+    "human_evaluation": "forbidden",
+    "minimum_unseen_question_components": 15,
+    "negative_role": "same_answer_nuisance",
+    "outcome_based_sample_selection": "forbidden",
+    "positive_role": "opposite_answer_candidate",
+    "question_key_sensitivity": "evaluation_keys_unseen_in_fit_or_threshold",
+    "threshold_partition": "threshold_calibration",
+    "threshold_selection": "maximum_balanced_accuracy_then_closest_to_zero"
+  },
+  "runner": "perception_edit_role_nuisance_detector",
+  "schema_version": 1,
+  "uncertainty": {
+    "bootstrap_repetitions": 10000,
+    "bootstrap_seed": 20270917,
+    "confidence_level": 0.95,
+    "method": "component_cluster_percentile_wilson_and_max_statistic"
+  }
+}

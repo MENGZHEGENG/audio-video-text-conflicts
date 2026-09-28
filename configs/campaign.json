@@ -1,0 +1,17 @@
+{
+  "name": "synthetic_campaign",
+  "train_size": 6000,
+  "eval_size": 4000,
+  "train_mechanisms": ["clean", "invert", "swap", "dropout"],
+  "seen_mechanisms": ["clean", "invert", "swap", "dropout"],
+  "unseen_mechanisms": ["clean", "mixed", "burst", "ambiguity"],
+  "strength": 1.0,
+  "noise": 0.22,
+  "epochs": 90,
+  "batch_size": 256,
+  "learning_rate": 0.0015,
+  "query_cost": 0.10,
+  "abstain_cost": 0.20,
+  "seed": 0,
+  "torch_threads": 4
+}

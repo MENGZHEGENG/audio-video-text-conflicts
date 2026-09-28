@@ -1,0 +1,33 @@
+{
+  "analysis": "paired_component_sign_flip_power_approximation",
+  "paired_analysis": {
+    "cluster_unit": "target_donor_connected_component",
+    "component_size_model": "fixed_observed",
+    "estimand": "event_weighted_absolute_error_reduction",
+    "final_analysis_alignment": "pre_study_approximation_only",
+    "finite_sample_requirement": "minimum_20_components",
+    "outcome_model": "rademacher_orient_whole_observed_component_scores_to_global_mde",
+    "reference_distribution": "component_rademacher_sign_flips",
+    "test": "monte_carlo_component_sign_flip",
+    "within_component_dependence": "preserve_whole_observed_component_aggregates"
+  },
+  "schema": "conflictbench.perception-component-power-config.v2",
+  "scope": {
+    "acquisition_budget": 0.5,
+    "dataset": "Perception Test",
+    "derivation_partition": "training",
+    "derivation_split_id": "perception_test_train_v1",
+    "evaluation_outcomes_access": "forbidden",
+    "policy_id": "value_of_evidence_policy_v1"
+  },
+  "simulation": {
+    "decision_confidence_level": 0.95,
+    "minimum_detectable_error_reduction": 0.01,
+    "null_calibration_max_rejection_rate": 0.06,
+    "randomization_draws": 999,
+    "repetitions": 10000,
+    "seed": 20270918,
+    "target_power": 0.8,
+    "two_sided_alpha": 0.05
+  }
+}

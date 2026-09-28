@@ -1,0 +1,117 @@
+{
+  "gate": {
+    "evaluation_partition": "pilot_gate",
+    "maximum_question_only_source_answer_accuracy_by_orientation": {
+      "donor": 0.5,
+      "target": 0.5
+    },
+    "maximum_shuffled_media_source_answer_accuracy_by_condition_and_orientation": {
+      "donor": {
+        "audio_only": 0.5,
+        "audiovisual": 0.5,
+        "video_only": 0.5
+      },
+      "target": {
+        "audio_only": 0.5,
+        "audiovisual": 0.5,
+        "video_only": 0.5
+      }
+    },
+    "minimum_aligned_over_control_margin_by_condition_and_orientation": {
+      "donor": {
+        "audio_only": 0.2,
+        "audiovisual": 0.2,
+        "video_only": 0.2
+      },
+      "target": {
+        "audio_only": 0.2,
+        "audiovisual": 0.2,
+        "video_only": 0.2
+      }
+    },
+    "question_key_sensitivity": "pilot_gate_normalized_questions_absent_from_fit_or_threshold",
+    "minimum_unseen_question_component_count": 15,
+    "maximum_unseen_question_margin_attenuation": 0.2,
+    "minimum_donor_accuracy_by_role_and_condition": {
+      "opposite_answer_candidate": {
+        "audio_only": 0.7,
+        "audiovisual": 0.7,
+        "video_only": 0.7
+      },
+      "same_answer_nuisance": {
+        "audio_only": 0.7,
+        "audiovisual": 0.7,
+        "video_only": 0.7
+      }
+    },
+    "minimum_pair_support_rate_by_role_and_condition": {
+      "opposite_answer_candidate": {
+        "audio_only": 0.5,
+        "audiovisual": 0.5,
+        "video_only": 0.5
+      },
+      "same_answer_nuisance": {
+        "audio_only": 0.5,
+        "audiovisual": 0.5,
+        "video_only": 0.5
+      }
+    },
+    "minimum_unique_target_accuracy_by_condition": {
+      "audio_only": 0.7,
+      "audiovisual": 0.7,
+      "video_only": 0.7
+    },
+    "minimum_strict_parse_rate": 0.95,
+    "outcome_based_sample_selection": "forbidden",
+    "require_choice_scores": false
+  },
+  "controls": {
+    "option_order_policy": "deterministic_balanced_by_partition_and_orientation",
+    "option_order_seed": 20270917,
+    "outcome_based_cohort_selection": "forbidden",
+    "same_question_shuffle_policy": "paired_opposite_answer_within_component",
+    "source_orientations": [
+      "target",
+      "donor"
+    ],
+    "types": [
+      "question_only",
+      "same_question_shuffled_media"
+    ]
+  },
+  "inference": {
+    "batch_size": 1,
+    "conditions": [
+      "audio_only",
+      "video_only",
+      "audiovisual"
+    ],
+    "do_sample": false,
+    "emit_choice_scores_when_single_token": true,
+    "maximum_new_tokens": 4,
+    "seed": 20270917,
+    "video_preprocessing": {
+      "fps": 2.0,
+      "max_frames": 32,
+      "max_pixels": 200704,
+      "min_frames": 4,
+      "min_pixels": 100352
+    }
+  },
+  "input": {
+    "media_extension": ".mp4",
+    "official_split": "train",
+    "selection_policy": "entire_candidate_index",
+    "validation_split_access": "forbidden"
+  },
+  "model": {
+    "attention_implementation": "sdpa",
+    "device_map": "auto",
+    "disable_talker": true,
+    "dtype": "float16",
+    "id": "Qwen/Qwen2.5-Omni-3B",
+    "revision": "f75b40e3da2003cdd6e1829b1f420ca70797c34e"
+  },
+  "runner": "perception_qwen25_omni_source_sufficiency",
+  "schema_version": 4
+}

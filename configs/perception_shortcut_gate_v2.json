@@ -1,0 +1,127 @@
+{
+  "feature_set": {
+    "forbidden_inputs": [
+      "question",
+      "options",
+      "answer",
+      "semantic_embedding",
+      "source_answer_score",
+      "source_sufficiency_outcome"
+    ],
+    "name": "container_and_stream_diagnostics_v1",
+    "names": [
+      "duration_relative_difference",
+      "byte_rate_relative_difference",
+      "target_av_duration_gap_fraction",
+      "donor_av_duration_gap_fraction",
+      "target_video_donor_audio_gap_fraction",
+      "target_audio_donor_video_gap_fraction",
+      "width_relative_difference",
+      "height_relative_difference",
+      "frame_rate_relative_difference",
+      "sample_rate_relative_difference",
+      "channel_count_relative_difference",
+      "video_codec_mismatch",
+      "audio_codec_mismatch",
+      "pixel_format_mismatch",
+      "sample_format_mismatch"
+    ]
+  },
+  "gate": {
+    "maximum_point_lift_over_structural_chance": 0.1,
+    "maximum_primary_upper_confidence_bound": 0.55,
+    "maximum_structural_chance_balanced_accuracy": 0.6,
+    "maximum_unseen_question_upper_confidence_bound": 0.55,
+    "minimum_permutation_p_value_exclusive": 0.05
+  },
+  "model": {
+    "families": [
+      "ridge_linear",
+      "univariate_linear",
+      "pairwise_interaction"
+    ],
+    "ridge_l2": 1.0,
+    "selection": "fit_only_max_absolute_covariance"
+  },
+  "permutation": {
+    "method": "within_component_role_swap_with_refit",
+    "repetitions": 10000,
+    "seed": 20271019
+  },
+  "protocol": {
+    "evaluation_partition": "pilot_gate",
+    "fit_partition": "scorer_fit",
+    "human_evaluation": "forbidden",
+    "minimum_unseen_question_components": 15,
+    "negative_role": "same_answer_nuisance",
+    "outcome_based_sample_selection": "forbidden",
+    "positive_role": "opposite_answer_candidate",
+    "question_key_sensitivity": "evaluation_keys_unseen_in_fit_or_threshold",
+    "threshold_partition": "threshold_calibration",
+    "threshold_selection": "maximum_balanced_accuracy_then_closest_to_zero"
+  },
+  "runner": "perception_edit_role_shortcut_gate",
+  "schema_version": 2,
+  "shortcut_gate": {
+    "equivalence_interval": [
+      -0.05,
+      0.05
+    ],
+    "maximum_metadata_balanced_accuracy_ucb_exclusive": 0.55,
+    "maximum_question_only_balanced_accuracy_ucb_exclusive": 0.55,
+    "maximum_question_blind_balanced_accuracy_ucb_exclusive": 0.55,
+    "maximum_shuffled_question_balanced_accuracy_ucb_exclusive": 0.55,
+    "minimum_aligned_minus_shuffled_lcb_inclusive": 0.1,
+    "minimum_remux_accuracy_difference_exclusive": -0.02,
+    "remux_p_gold_minimum": "negative_semantic_fit_epsilon"
+  },
+  "shortcut_protocol": {
+    "bootstrap_repetitions": 10000,
+    "bootstrap_seed": 271828,
+    "chronology": "preregistration_bound_before_completed_output",
+    "confidence_level": 0.95,
+    "dependency_roles": [
+      "raw_conflict_index",
+      "source_only",
+      "semantic_gate",
+      "derived_media_v4"
+    ],
+    "derived_media_authentication": "exact_inventory_before_and_after_replay",
+    "output_schema": "conflictbench.perception-shortcut-output.v2",
+    "power_schema": "conflictbench.perception-shortcut-power.v2",
+    "power_simulations": 10000,
+    "preregistration_schema": "conflictbench.perception-shortcut-preregistration.v2",
+    "question_blind_allowed_request_fields": [
+      "schema",
+      "audio",
+      "video"
+    ],
+    "question_blind_forbidden_inputs": [
+      "question",
+      "options",
+      "answer",
+      "condition",
+      "orientation",
+      "option_permutation",
+      "component_id",
+      "question_key_sha256"
+    ],
+    "question_blind_output_schema": "conflictbench.perception-question-blind-av-mismatch-output.v2",
+    "question_blind_request_schema": "conflictbench.perception-question-blind-av-mismatch-request.v2",
+    "question_only_replay_verification": "two_fresh_exact_replays",
+    "report_schema": "conflictbench.perception-shortcut-report.v2",
+    "replay_verification": "two_fresh_exact_replays",
+    "replay_worker_request_schema": "conflictbench.perception-replay-request.v2",
+    "replay_worker_response_schema": "conflictbench.perception-replay-worker-response.v2",
+    "result_schema": "conflictbench.perception-shortcut-result.v2",
+    "uncertainty_method": "one_sided_component_cluster_percentile_bonferroni_familywise",
+    "uncertainty_unit": "connected_analysis_component",
+    "verified_dependency_schema": "conflictbench.perception-verified-dependency.v2"
+  },
+  "uncertainty": {
+    "bootstrap_repetitions": 10000,
+    "bootstrap_seed": 20270917,
+    "confidence_level": 0.95,
+    "method": "component_cluster_percentile_and_max_statistic"
+  }
+}

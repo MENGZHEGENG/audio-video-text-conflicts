@@ -1,0 +1,80 @@
+{
+  "schema": "conflictbench.temporal_campaign.v2",
+  "name": "temporal_snr_robustness",
+  "base_config": {
+    "dataset": "synthetic_temporal",
+    "train_size": 12000,
+    "eval_size": 4000,
+    "train_mechanisms": ["clean", "invert", "swap", "dropout"],
+    "seen_mechanisms": ["clean", "invert", "swap", "dropout"],
+    "unseen_mechanisms": ["clean", "mixed", "burst", "ambiguity", "segment_invert", "occlusion", "drift"],
+    "seq_len": 64,
+    "strength": 1.0,
+    "positive_rate": 0.5,
+    "epochs": 25,
+    "batch_size": 256,
+    "learning_rate": 0.0015,
+    "query_cost": 0.10,
+    "abstain_cost": 0.20,
+    "torch_threads": 4,
+    "temporal_max_steps": 200000,
+    "temporal_batch_size": 256,
+    "temporal_learning_rate": 0.0015,
+    "temporal_width": 128,
+    "temporal_depth": 6,
+    "temporal_eval_batch_size": 1024,
+    "noise": 0.22
+  },
+  "cells": [
+    {
+      "id": "strength035-noise040",
+      "hypothesis": "Low signal with moderate noise tests whether temporal structure remains recoverable.",
+      "overrides": {"strength": 0.35, "noise": 0.40}
+    },
+    {
+      "id": "strength035-noise055",
+      "hypothesis": "Low signal at elevated noise should expose a sequence-vs-scalar transfer gap.",
+      "overrides": {"strength": 0.35, "noise": 0.55}
+    },
+    {
+      "id": "strength035-noise070",
+      "hypothesis": "The lowest signal-to-noise condition tests failure under severe observation noise.",
+      "overrides": {"strength": 0.35, "noise": 0.70}
+    },
+    {
+      "id": "strength055-noise040",
+      "hypothesis": "Moderate signal with moderate noise tests stability after reducing event amplitude.",
+      "overrides": {"strength": 0.55, "noise": 0.40}
+    },
+    {
+      "id": "strength055-noise055",
+      "hypothesis": "The central low-signal condition measures robustness at matched moderate difficulty.",
+      "overrides": {"strength": 0.55, "noise": 0.55}
+    },
+    {
+      "id": "strength055-noise070",
+      "hypothesis": "Moderate signal at high noise tests whether temporal redundancy offsets corruption.",
+      "overrides": {"strength": 0.55, "noise": 0.70}
+    },
+    {
+      "id": "strength085-noise040",
+      "hypothesis": "Higher signal with moderate noise isolates the cost of temporal corruption mechanisms.",
+      "overrides": {"strength": 0.85, "noise": 0.40}
+    },
+    {
+      "id": "strength085-noise055",
+      "hypothesis": "Higher signal at elevated noise tests whether gains persist beyond the reference setting.",
+      "overrides": {"strength": 0.85, "noise": 0.55}
+    },
+    {
+      "id": "strength085-noise070",
+      "hypothesis": "The high-signal high-noise corner separates temporal robustness from signal magnitude alone.",
+      "overrides": {"strength": 0.85, "noise": 0.70}
+    }
+  ],
+  "primary_seeds": [211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293, 307, 311, 313],
+  "replication_seeds": [811],
+  "replication_overrides": {
+    "temporal_max_steps": 8000
+  }
+}

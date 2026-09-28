@@ -1,0 +1,41 @@
+{
+  "schema": "conflictbench.temporal_shortcut_check.v2",
+  "name": "temporal_shortcut_falsification",
+  "seeds": [11, 23, 37, 41, 53],
+  "cells": [
+    {
+      "id": "central",
+      "hypothesis": "A simple full-trace control should expose whether the fixed marker explains the temporal result at the original central setting.",
+      "train_size": 6000,
+      "eval_size": 4000,
+      "seq_len": 64,
+      "strength": 1.0,
+      "noise": 0.22,
+      "train_mechanisms": ["clean", "invert", "swap", "dropout"],
+      "seen_mechanisms": ["clean", "invert", "swap", "dropout"],
+      "unseen_mechanisms": ["clean", "segment_invert", "occlusion", "drift", "mixed", "burst", "ambiguity"],
+      "max_steps": 800,
+      "batch_size": 256,
+      "learning_rate": 0.0015,
+      "width": 96,
+      "depth": 4
+    },
+    {
+      "id": "hard",
+      "hypothesis": "The same controls test whether the conclusion changes when the temporal signal is weaker and observation noise is higher.",
+      "train_size": 6000,
+      "eval_size": 4000,
+      "seq_len": 64,
+      "strength": 0.55,
+      "noise": 0.55,
+      "train_mechanisms": ["clean", "invert", "swap", "dropout"],
+      "seen_mechanisms": ["clean", "invert", "swap", "dropout"],
+      "unseen_mechanisms": ["clean", "segment_invert", "occlusion", "drift", "mixed", "burst", "ambiguity"],
+      "max_steps": 800,
+      "batch_size": 256,
+      "learning_rate": 0.0015,
+      "width": 96,
+      "depth": 4
+    }
+  ]
+}

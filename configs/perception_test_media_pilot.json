@@ -1,0 +1,79 @@
+{
+  "builder": "perception_test_training_media_pilot",
+  "construction": {
+    "component_partition_lock": true,
+    "min_supported_answers_per_key": 2,
+    "min_unique_train_videos_per_supported_answer": 5,
+    "official_split": "train",
+    "pair_roles": [
+      "same_answer_nuisance",
+      "opposite_answer_candidate"
+    ],
+    "prefer_unique_donors": true,
+    "require_every_eligible_key": true,
+    "target_and_donor_video_disjoint_when_possible": true
+  },
+  "counts": {
+    "expected_eligible_key_count": 85,
+    "expected_eligible_key_count_by_supported_answer_count": {
+      "2": 55,
+      "3": 30
+    },
+    "pair_count": 200,
+    "pair_count_bounds": [
+      200,
+      500
+    ],
+    "partition_target_counts": {
+      "pilot_gate": 20,
+      "scorer_fit": 60,
+      "threshold_calibration": 20
+    },
+    "target_count": 100
+  },
+  "gate_contract": {
+    "evaluation_partition": "pilot_gate",
+    "fit_partition": "scorer_fit",
+    "nuisance_detection_required": true,
+    "required_modalities": [
+      "audio",
+      "video"
+    ],
+    "scores_in_builder_forbidden": true,
+    "source_answer_scoring_required": true,
+    "status": "not_run",
+    "threshold_partition": "threshold_calibration",
+    "thresholds_must_be_frozen_before_evaluation": true,
+    "version": 1
+  },
+  "implementation_sha256": "fab8c77d0808e10e332a2b04f827f8adb59a1bf72e3bc3f9fdc4160f7dbfab09",
+  "input_locks": {
+    "audit_configuration_sha256": "0ed19f8193f4872897b572553869ac0ca3732a02f63afd4ca18794425000fe3a",
+    "train_archive": {
+      "generation": "1686575054862298",
+      "member": "mc_question_train.json",
+      "metadata_split": "train",
+      "sha256": "e28bfb68f2b5de827bb76053f9415261e057b29f33cf18174f234535e4dcf073",
+      "size_bytes": 87873,
+      "url": "https://storage.googleapis.com/dm-perception-test/zip_data/mc_question_train_annotations.zip?generation=1686575054862298"
+    },
+    "validation_archive": {
+      "generation": "1686575054970958",
+      "member": "mc_question_valid.json",
+      "metadata_split": "valid",
+      "sha256": "3f3ebb388b042e35d5c07fa6e2404d78feb63e4e477740948fc92dfc83c480ad",
+      "size_bytes": 204076,
+      "url": "https://storage.googleapis.com/dm-perception-test/zip_data/mc_question_valid_annotations.zip?generation=1686575054970958"
+    }
+  },
+  "purpose": "training_only_source_sufficiency_construction",
+  "schema_version": 1,
+  "seed": 20270917,
+  "source": {
+    "annotation_license": "CC-BY-4.0",
+    "citation": "Pătrăucean et al. (2023), Perception Test",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/legalcode",
+    "repository_commit": "3938d2f1ba3a6b502025741cea4cd73c7b3bdfaf",
+    "repository_url": "https://github.com/google-deepmind/perception_test"
+  }
+}

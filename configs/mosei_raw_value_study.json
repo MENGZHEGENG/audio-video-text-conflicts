@@ -1,0 +1,87 @@
+{
+  "schema": "conflictbench.mosei-raw-value-study.v1",
+  "dataset": "CMU-MOSEI",
+  "input_representation": "utterance-aligned pooled released computational-sequence descriptors",
+  "evidence_status": "exploratory_taskfit_reprojection",
+  "conflict_definition": "none_unmodified_official_mosei_sentiment",
+  "projection": {
+    "fit_scope": "official_train_task_fit_groups",
+    "standardization": "per_modality_task_fit_zscore",
+    "supervised_projection": "task_fit_standardized_mean_difference",
+    "minimum_scale": 1e-8
+  },
+  "expected_split_counts": {
+    "train": 16327,
+    "valid": 1871
+  },
+  "train_group_fractions": [0.5, 0.25, 0.25],
+  "seeds": [11, 23, 37, 41, 53],
+  "budgets": [0.0, 0.25, 0.5, 0.75, 1.0],
+  "coverage_targets": [1.0, 0.9, 0.8],
+  "ridge": 0.01,
+  "benefit_ridge": 0.1,
+  "confidence_ridge": 0.1,
+  "bootstrap_repetitions": 10000,
+  "bootstrap_seed": 20270917,
+  "headroom_budget": 0.5,
+  "primary_budget": 0.5,
+  "minimum_oracle_error_reduction": 0.02,
+  "minimum_primary_error_reduction_gain": 0.005,
+  "minimum_video_macro_gain_fraction": 0.5,
+  "minimum_nonnegative_start_contexts": 2,
+  "maximum_start_context_harm": 0.005,
+  "task_head_reference_name": "corrected five-seed CMU-MOSEI descriptor MLP validation mean",
+  "reference_full_avt_validation_accuracy": 0.7726349545697488,
+  "task_head_reference_sha256": "5cc5e2bdda18e4679766327aefacab5499c3be87658b7571432d7d9eae81fbf7",
+  "maximum_task_head_accuracy_gap": 0.03,
+  "minimum_mask_validation_accuracy": 0.65,
+  "router_ladder": {
+    "inner_group_folds": 3,
+    "selection_budget": 0.5,
+    "selection_metric": "mean_held_out_error_reduction",
+    "family_tie_order": ["linear_value", "hist_gbt_value", "shallow_mlp_value"],
+    "scikit_learn_version": "1.9.0",
+    "hist_gbt_grid": [
+      {
+        "max_leaf_nodes": 7,
+        "learning_rate": 0.05,
+        "max_iter": 150,
+        "min_samples_leaf": 40,
+        "l2_regularization": 1.0,
+        "max_bins": 63,
+        "early_stopping": false
+      },
+      {
+        "max_leaf_nodes": 15,
+        "learning_rate": 0.05,
+        "max_iter": 150,
+        "min_samples_leaf": 40,
+        "l2_regularization": 1.0,
+        "max_bins": 63,
+        "early_stopping": false
+      }
+    ],
+    "shallow_mlp_grid": [
+      {
+        "hidden_layer_sizes": [16],
+        "activation": "relu",
+        "solver": "adam",
+        "alpha": 0.001,
+        "learning_rate_init": 0.001,
+        "batch_size": 256,
+        "max_iter": 300,
+        "early_stopping": false
+      },
+      {
+        "hidden_layer_sizes": [32],
+        "activation": "relu",
+        "solver": "adam",
+        "alpha": 0.001,
+        "learning_rate_init": 0.001,
+        "batch_size": 256,
+        "max_iter": 300,
+        "early_stopping": false
+      }
+    ]
+  }
+}

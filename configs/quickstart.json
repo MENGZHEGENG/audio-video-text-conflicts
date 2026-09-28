@@ -1,0 +1,17 @@
+{
+  "name": "quickstart",
+  "train_size": 600,
+  "eval_size": 800,
+  "train_mechanisms": ["clean", "invert", "swap", "dropout"],
+  "seen_mechanisms": ["clean", "invert", "swap", "dropout"],
+  "unseen_mechanisms": ["clean", "mixed", "burst", "ambiguity"],
+  "strength": 1.0,
+  "noise": 0.22,
+  "epochs": 25,
+  "batch_size": 64,
+  "learning_rate": 0.002,
+  "query_cost": 0.1,
+  "abstain_cost": 0.2,
+  "seed": 0,
+  "torch_threads": 2
+}

@@ -1,0 +1,84 @@
+{
+  "audio_encoding": {
+    "bitrate": "128k",
+    "bitrate_tolerance_fraction": 0.35,
+    "channels": 2,
+    "codec": "aac",
+    "sample_format": "fltp",
+    "sample_rate": 48000
+  },
+  "conditions": [
+    "clean_original",
+    "remux_only",
+    "same_answer",
+    "opposite_answer",
+    "missing_source",
+    "temporal_shift"
+  ],
+  "container": {
+    "format": "mp4",
+    "probe_format_names": [
+      "mov",
+      "mp4",
+      "m4a",
+      "3gp",
+      "3g2",
+      "mj2"
+    ],
+    "strip_metadata": true
+  },
+  "human_evaluation": "forbidden",
+  "missing_source_fill": {
+    "audio": "silence",
+    "video": "black"
+  },
+  "requested_source_orientations": [
+    "audio_over_video",
+    "video_over_audio"
+  ],
+  "runner": "perception_test_controlled_media_edits",
+  "schema_version": 4,
+  "source_gate_authorization": {
+    "orientation_conditions": {
+      "audio_over_video": "audio_only",
+      "video_over_audio": "video_only"
+    },
+    "required_nuisance_detection_status": "not_run",
+    "required_overall_pilot_status": "pending_nuisance_detection",
+    "required_source_sufficiency_status": "pass",
+    "verification": "exact_output_from_authenticated_transcript_replay"
+  },
+  "temporal_calibration": {
+    "calibration_partition": "scorer_fit",
+    "candidate_shifts_seconds": [
+      0.25,
+      0.5,
+      1.0
+    ],
+    "event_scoring_rule": "absolute_reference_minus_shifted",
+    "implementation_roles": [
+      "generator",
+      "scorer"
+    ],
+    "official_split": "train",
+    "record_schema": "conflictbench.perception-temporal-shift-events.v2",
+    "replay_protocol": "pinned_python_json_cli_v1",
+    "selection_rule": "maximum_mean_absolute_score_change_then_smallest_shift_seconds"
+  },
+  "validation": {
+    "duration_tolerance_seconds": 0.1,
+    "ffmpeg_timeout_seconds": 600,
+    "reject_extra_streams": true,
+    "require_exact_stream_types": [
+      "audio",
+      "video"
+    ]
+  },
+  "video_encoding": {
+    "codec": "h264",
+    "crf": 18,
+    "encoder": "libx264",
+    "pixel_format": "yuv420p",
+    "preset": "medium"
+  }
+}

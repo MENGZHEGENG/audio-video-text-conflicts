@@ -1,0 +1,18 @@
+{
+  "name": "matched_selector_value",
+  "train_size": 6000,
+  "eval_size": 4000,
+  "train_mechanisms": ["clean", "invert", "swap", "dropout"],
+  "evaluation_mechanisms": ["clean", "mixed", "burst", "ambiguity"],
+  "strength": 1.0,
+  "noise": 0.22,
+  "score_threshold": 0.35,
+  "query_cost": 0.10,
+  "abstain_cost": 0.20,
+  "budgets": [0.1, 0.25, 0.5, 0.637],
+  "ridge_alpha": 1.0,
+  "random_seed_offset": 500003,
+  "bootstrap_seed": 92309,
+  "bootstrap_samples": 10000,
+  "notes": "Reuses the scalar campaign generator, sizes, mechanisms, strength, noise, score threshold, utility costs, and 83-seed roster. Terminal action is the sign of the available-score sum with abstention below the fixed threshold; exact top-k selection uses selector scores only."
+}

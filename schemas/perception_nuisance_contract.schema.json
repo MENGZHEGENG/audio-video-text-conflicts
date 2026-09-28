@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:conflictbench:schema:perception-nuisance-contract:v1",
+  "additionalProperties": false,
+  "properties": {
+    "human_evaluation": {"const": "forbidden"},
+    "input_digests": {
+      "additionalProperties": false,
+      "properties": {
+        "configuration_sha256": {"pattern": "^[0-9a-f]{64}$", "type": "string"},
+        "implementation_bundle_sha256": {"pattern": "^[0-9a-f]{64}$", "type": "string"},
+        "media_receipt_sha256": {"pattern": "^[0-9a-f]{64}$", "type": "string"},
+        "media_set_sha256": {"pattern": "^[0-9a-f]{64}$", "type": "string"},
+        "pilot_index_sha256": {"pattern": "^[0-9a-f]{64}$", "type": "string"}
+      },
+      "required": [
+        "configuration_sha256",
+        "pilot_index_sha256",
+        "media_receipt_sha256",
+        "media_set_sha256",
+        "implementation_bundle_sha256"
+      ],
+      "type": "object"
+    },
+    "outcome_based_sample_selection": {"const": "forbidden"},
+    "partitions": {
+      "additionalProperties": false,
+      "properties": {
+        "evaluation": {"const": "pilot_gate"},
+        "fit": {"const": "scorer_fit"},
+        "threshold": {"const": "threshold_calibration"}
+      },
+      "required": ["fit", "threshold", "evaluation"],
+      "type": "object"
+    },
+    "schema": {"const": "conflictbench.perception-nuisance-detection-contract.v1"},
+    "status": {"const": "preregistered_not_run"}
+  },
+  "required": [
+    "schema",
+    "status",
+    "input_digests",
+    "partitions",
+    "human_evaluation",
+    "outcome_based_sample_selection"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,42 @@
+{
+  "schema": "conflictbench.temporal_campaign.v2",
+  "name": "temporal_snr_replication",
+  "base_config": {
+    "dataset": "synthetic_temporal",
+    "train_size": 12000,
+    "eval_size": 4000,
+    "train_mechanisms": ["clean", "invert", "swap", "dropout"],
+    "seen_mechanisms": ["clean", "invert", "swap", "dropout"],
+    "unseen_mechanisms": ["clean", "mixed", "burst", "ambiguity", "segment_invert", "occlusion", "drift"],
+    "seq_len": 64,
+    "strength": 1.0,
+    "positive_rate": 0.5,
+    "epochs": 25,
+    "batch_size": 256,
+    "learning_rate": 0.0015,
+    "query_cost": 0.10,
+    "abstain_cost": 0.20,
+    "torch_threads": 4,
+    "temporal_max_steps": 200000,
+    "temporal_batch_size": 256,
+    "temporal_learning_rate": 0.0015,
+    "temporal_width": 128,
+    "temporal_depth": 6,
+    "temporal_eval_batch_size": 1024,
+    "noise": 0.22
+  },
+  "cells": [
+    {"id": "strength035-noise040", "hypothesis": "Independent seeds test whether low-signal recovery at moderate noise is reproducible.", "overrides": {"strength": 0.35, "noise": 0.40}},
+    {"id": "strength035-noise055", "hypothesis": "Independent seeds test whether the low-signal sequence-vs-scalar gap survives elevated noise.", "overrides": {"strength": 0.35, "noise": 0.55}},
+    {"id": "strength035-noise070", "hypothesis": "Independent seeds test whether severe observation noise consistently limits recovery.", "overrides": {"strength": 0.35, "noise": 0.70}},
+    {"id": "strength055-noise040", "hypothesis": "Independent seeds test stability at moderate signal and moderate noise.", "overrides": {"strength": 0.55, "noise": 0.40}},
+    {"id": "strength055-noise055", "hypothesis": "Independent seeds test the central low-signal robustness result.", "overrides": {"strength": 0.55, "noise": 0.55}},
+    {"id": "strength055-noise070", "hypothesis": "Independent seeds test whether temporal redundancy offsets high noise.", "overrides": {"strength": 0.55, "noise": 0.70}},
+    {"id": "strength085-noise040", "hypothesis": "Independent seeds test robustness to temporal corruption at higher signal.", "overrides": {"strength": 0.85, "noise": 0.40}},
+    {"id": "strength085-noise055", "hypothesis": "Independent seeds test whether higher-signal gains persist at elevated noise.", "overrides": {"strength": 0.85, "noise": 0.55}},
+    {"id": "strength085-noise070", "hypothesis": "Independent seeds test the high-signal, high-noise corner separately from signal magnitude.", "overrides": {"strength": 0.85, "noise": 0.70}}
+  ],
+  "primary_seeds": [401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 419, 420, 421, 422, 423, 424, 425, 426, 427, 428, 429, 430, 431, 432, 433, 434, 435, 436, 437, 438, 439, 440, 441, 442, 443, 444, 445, 446, 447, 448, 449, 450, 451, 452, 453, 454, 455, 456, 457, 458, 459, 460, 461, 462, 463, 464],
+  "replication_seeds": [911],
+  "replication_overrides": {"temporal_max_steps": 8000}
+}

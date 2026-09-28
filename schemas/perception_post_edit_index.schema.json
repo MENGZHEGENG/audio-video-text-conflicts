@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:conflictbench:schema:perception-post-edit-index:v1",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "component_id": {"minLength": 1, "type": "string"},
+      "key_sha256": {"minLength": 1, "type": "string"},
+      "output_video_id": {"minLength": 1, "type": "string"},
+      "pair_id": {"minLength": 1, "type": "string"},
+      "partition": {"enum": ["scorer_fit", "threshold_calibration", "pilot_gate"]},
+      "role": {"enum": ["same_answer_nuisance", "opposite_answer_candidate"]},
+      "target_id": {"minLength": 1, "type": "string"},
+      "target_video_id": {"minLength": 1, "type": "string"}
+    },
+    "required": [
+      "pair_id",
+      "target_id",
+      "component_id",
+      "partition",
+      "key_sha256",
+      "target_video_id",
+      "output_video_id",
+      "role"
+    ],
+    "type": "object"
+  },
+  "minItems": 1,
+  "type": "array"
+}
